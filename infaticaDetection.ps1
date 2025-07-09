@@ -1,6 +1,6 @@
 # Define log path
 $LogFolder = "C:\ProgramData\Microsoft\IntuneManagementExtension\Logs"
-$LogFile = Join-Path $LogFolder "DetectionScript-CodecPack.log"
+$LogFile = Join-Path $LogFolder "DetectionScript-Infatica.log"
 
 # Ensure log folder and file exist
 if (-not (Test-Path $LogFolder)) {
@@ -18,15 +18,15 @@ function Write-Log {
 
 # Detection logic
 $BaseRegistryPath = "HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall"
-$TargetDisplayName = "K-Lite Codec Pack"
-$ExpectedInstallPath = "C:\Program Files (x86)\K-Lite Codec Pack\"
+$TargetDisplayName = "Infatica P2B Network"
+$ExpectedInstallPath = "C:\Program Files (x86)\Infatica P2B\"
 $ExitCode = 0
 
 Write-Log "==== Restart Notification Detection Started ===="
 
-#Checks each child path in $BaseRegistryPath and finds one with a DisplayName key of "K-Lite Codec Pack"
+#Checks each child path in $BaseRegistryPath and finds one with a DisplayName of "Infatica P2B Network"
 try {
-    Write-Log "Searching for K-Lite registry key under $BaseRegistryPath"
+    Write-Log "Searching for Infatica registry key under $BaseRegistryPath"
 
     $Key = Get-ChildItem -Path $BaseRegistryPath | ForEach-Object {
         try {
@@ -38,25 +38,25 @@ try {
     } | Select-Object -First 1
 
     if (-not $Key) {
-        Write-Log "K-Lite not installed. Matching registry key not found."
-        Write-Host "K-Lite not installed. Registry key not found."
+        Write-Log "Infatica not installed. Matching registry key not found."
+        Write-Host "Infatica not installed. Registry key not found."
     }
     elseif (-not ($Key.PSObject.Properties.Name -contains "InstallLocation")) {
-        Write-Log "K-Lite installed but InstallLocation property missing."
-        Write-Host "K-Lite installed but InstallLocation missing."
+        Write-Log "Infatica installed but InstallLocation property missing."
+        Write-Host "Infatica installed but InstallLocation missing."
     }
     else {
         $CurrentValue = $Key.InstallLocation
         Write-Log "Found InstallLocation = $CurrentValue."
 
         if ($CurrentValue -eq $ExpectedInstallPath) {
-            Write-Log "K-Lite install found and matches expected path."
-            Write-Host "K-Lite found"
+            Write-Log "Infatica install found and matches expected path."
+            Write-Host "Infatica found"
             $ExitCode = 1
         }
         else {
-            Write-Log "K-Lite install path does not match expected. Found: $CurrentValue"
-            Write-Host "K-Lite install path mismatch."
+            Write-Log "Infatica install path does not match expected. Found: $CurrentValue"
+            Write-Host "Infatica install path mismatch."
         }
     }
 }

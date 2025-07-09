@@ -1,6 +1,6 @@
 # Define log path
 $LogFolder = "C:\ProgramData\Microsoft\IntuneManagementExtension\Logs"
-$LogFile = Join-Path $LogFolder "RemediationScript-CodecPack.log"
+$LogFile = Join-Path $LogFolder "RemediationScript-Infatica.log"
 
 # Ensure log folder and file exist
 if (-not (Test-Path $LogFolder)) {
@@ -19,7 +19,7 @@ function Write-Log {
 Write-Log "==== Remediation Script Started ===="
 
 # Uninstall path
-$UninstallPath = "C:\Program Files (x86)\K-Lite Codec Pack\unins000.exe"
+$UninstallPath = "C:\Program Files (x86)\Infatica P2B\unins000.exe"
 $SilentArgs = "/VERYSILENT /NORESTART"
 
 #Attempts to uninstall, prints logs if it fails.
