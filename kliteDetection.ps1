@@ -22,7 +22,7 @@ $TargetDisplayName = "K-Lite Codec Pack"
 $ExpectedInstallPath = "C:\Program Files (x86)\K-Lite Codec Pack\"
 $ExitCode = 0
 
-Write-Log "==== Restart Notification Detection Started ===="
+Write-Log "==== K-lite Detection Script Started ===="
 
 #Checks each child path in $BaseRegistryPath and finds one with a DisplayName key of "K-Lite Codec Pack"
 try {
@@ -47,7 +47,7 @@ try {
     }
     else {
         $CurrentValue = $Key.InstallLocation
-        Write-Log "Found InstallLocation = $CurrentValue."
+        Write-Log "Found Install Location = $CurrentValue."
 
         if ($CurrentValue -eq $ExpectedInstallPath) {
             Write-Log "K-Lite install found and matches expected path."
@@ -65,6 +65,6 @@ catch {
     Write-Host "Not Compliant. Error during detection."
 }
 finally {
-    Write-Log "==== Restart Notification Detection Ended ====`n"
-    Exit $ExitCode
+    Write-Log "==== K-lite Detection Script Completed ====`n"
+    exit $ExitCode
 }

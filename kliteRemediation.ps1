@@ -16,7 +16,7 @@ function Write-Log {
     Add-Content -Path $LogFile -Value "$Timestamp - $Message"
 }
 
-Write-Log "==== Remediation Script Started ===="
+Write-Log "==== K-lite Remediation Started ===="
 
 # Uninstall path
 $UninstallPath = "C:\Program Files (x86)\K-Lite Codec Pack\unins000.exe"
@@ -27,9 +27,11 @@ try {
     if (Test-Path $UninstallPath) {
         Write-Log "Uninstaller found at: $UninstallPath"
         Write-Log "Executing silent uninstall..."
+
         
         Start-Process -FilePath $UninstallPath -ArgumentList $SilentArgs -Wait -NoNewWindow
-        Write-Log "Uninstall process completed."
+        Write-Log "Uninstall process completed sucessfully."
+        Write-Host "Uninstall process completed successfully on local host"
     }
     else {
         Write-Log "Uninstaller not found at: $UninstallPath"
@@ -41,5 +43,5 @@ catch {
     Write-Host "An error occurred during uninstallation."
 }
 finally {
-    Write-Log "==== Remediation Script Ended ====`n"
+    Write-Log "==== K-lite Remediation Ended ====`n"
 }

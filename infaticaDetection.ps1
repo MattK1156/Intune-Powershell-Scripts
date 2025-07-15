@@ -22,7 +22,7 @@ $TargetDisplayName = "Infatica P2B Network"
 $ExpectedInstallPath = "C:\Program Files (x86)\Infatica P2B\"
 $ExitCode = 0
 
-Write-Log "==== Restart Notification Detection Started ===="
+Write-Log "==== Infatica Detection Started ===="
 
 #Checks each child path in $BaseRegistryPath and finds one with a DisplayName of "Infatica P2B Network"
 try {
@@ -65,6 +65,6 @@ catch {
     Write-Host "Not Compliant. Error during detection."
 }
 finally {
-    Write-Log "==== Restart Notification Detection Ended ====`n"
-    Exit $ExitCode
+    Write-Log "==== Infatica Detection Ended ====`n"
+    exit $ExitCode
 }
