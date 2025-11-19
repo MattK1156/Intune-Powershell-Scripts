@@ -95,3 +95,4 @@ Here you can find a variety of powershell scripts including:
 <li>Application Detection / Remediation</li>
 <li>File Detection / Remediation</li>
 
+File Detection : When using file detection, it's important to always specify the full path.
