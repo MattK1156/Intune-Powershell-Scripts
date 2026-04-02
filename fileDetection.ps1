@@ -17,8 +17,8 @@ function Write-Log {
 }
 
 # Variables
-$FilePath = "C:\ESD\test.txt"
-$ExitCode = 0
+$FilePath = "C:\Users\Public\Desktop\Water and Sewer History PWDS.url"
+$ExitCode = 1
 
 Write-Log "==== File Detection Script Started  Looking for $FilePath ===="
 
@@ -26,7 +26,7 @@ Write-Log "==== File Detection Script Started  Looking for $FilePath ===="
 try {
     Write-Log "Searching for file under $FilePath"
     if (Test-Path -Path $FilePath) {
-        $ExitCode = 1
+        $ExitCode = 0
     }
     else {
         Write-Log "Could not find $FilePath, it does not exist."

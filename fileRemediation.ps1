@@ -17,20 +17,24 @@ function Write-Log {
 }
 
 # Variables
-$FilePath = "C:\ESD\test.txt"
-$ServerPath = "\\provision\Software\Replacement\test.txt"
+$FilePath = "C:\Users\Public\Desktop\"
+$ServerPath = "\\provision\Software\Shortcuts\Water and Sewer History PWDS.url"
+$ExitCode = 0
 
 Write-Log "==== File Replacement Script Started  swapping $FilePath with $ServerPath ===="
 
 #Tries to transfer file, catches errors if it fails.
 try {
-    Copy-Item -Path $ServerPath -Destination $FilePath -Force
+    Move-Item -Path $ServerPath -Destination $FilePath -Force
+    # Use Copy-Item if replacing a file, same syntax.
     Write-Log "Successfully replaced file in the destination $FilePath"
     Write-Host "Successfully replaced file in the destination $FilePath"
 }catch {
+    $ExitCode = 1
     Write-Log "ERROR. Unknown Exception occurred, could not transfer file."
     Write-Host "ERROR. Unknown Exception occurred, could not transfer file."
 }
 finally {
     Write-Log "==== File Replacement Script Completed ====`n"
+    exit $ExitCode
 }
